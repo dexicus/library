@@ -1,0 +1,73 @@
+html {
+    font-family: monospace;
+    background-color: #adadad;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+header,
+.container {
+    padding-left: 8px;
+}
+
+header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #868686;
+}
+
+h1:hover {
+    user-select: none;
+    color: rgb(54, 54, 54);
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    padding-right: 30px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    user-select: none;
+}
+
+input {
+    width: 225px;
+    margin-bottom: 4px;
+}
+
+input[type=checkbox] {
+    width: fit-content;
+    vertical-align: middle;
+    
+}
+
+button {
+    margin: 12px 0;
+    width: 45px;
+}
+
+.main {
+    padding: 50px;
+    flex: 1;
+    background-color: #c7c7c7;
+    display: flex;
+    gap: 15px;
+}
+
+.book-card {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
