@@ -46,18 +46,17 @@ function displayLibrary(myLibrary) {
         const card = document.createElement('div');
         document.getElementById('main').appendChild(card);
         card.classList.add('book-card')
-        const title = createCard(book);
-        document.card.appendChild(card)
+        createCard(book)
     });
 };
 
 
 function createCard(book) {
     for (property in book) {
-        const info = document.createElement('div');
-        if (property == 'title') {
-            return(book[property])
-        }
+        const info = document.createElement('span');
+        const card = document.querySelector('.book-card')
+        card.append(info);
+        console.log(book.title)
     }
 };
 
