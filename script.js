@@ -50,6 +50,7 @@ function displayLibrary(myLibrary) {
     });
 };
 
+
 function createCard(book) {
     for (property in book) {
         const info = document.createElement('div');
