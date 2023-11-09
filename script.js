@@ -28,6 +28,7 @@ class Book {
     }
 }
 
+
 function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
