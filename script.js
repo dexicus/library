@@ -39,28 +39,39 @@ function addBookToLibrary() {
     else (
         myLibrary.push(new Book(title, author, pages, isRead))
         );
+    displayLibrary(myLibrary);
 };
 
+
 function displayLibrary(myLibrary) {
+    deleteLibrary();
     myLibrary.forEach(function (book) {
-        const card = document.createElement('div');
-        document.getElementById('main').appendChild(card);
-        card.classList.add('book-card')
-        createCard(book)
+        const bookInfo = Object.values(book)
+        createCard(bookInfo)
     });
 };
 
 
-function createCard(book) {
-    for (property in book) {
-        const info = document.createElement('span');
-        const card = document.querySelector('.book-card')
+function createCard(bookInfo) {
+    const card = document.createElement('div');
+    document.getElementById('books').appendChild(card);
+    card.classList.add('book-card')
+    for (i=0; i < bookInfo.length; i++) {
+        const info = document.createElement('div');
         card.append(info);
-        console.log(book.title)
+        info.classList.add('book-info')
+        info.textContent = bookInfo[i];
     }
 };
 
+function deleteLibrary() {
+    const books = document.getElementById('books');
+    while (books.firstChild) {
+        books.removeChild(books.firstChild);
+      }
+}
 
 
+displayLibrary(myLibrary);
 
 document.getElementById('addBook').addEventListener('click', addBookToLibrary);
