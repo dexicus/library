@@ -27,10 +27,6 @@ header {
     background-color: #868686;
 }
 
-h1:hover {
-    user-select: none;
-    color: rgb(54, 54, 54);
-}
 
 .container {
     display: flex;
@@ -43,6 +39,17 @@ h1:hover {
     display: flex;
     flex-direction: column;
 }
+
+h3 {
+
+}
+
+h3:hover {
+    user-select: none;
+    color: rgb(54, 54, 54);
+    text-decoration: underline;
+}
+
 
 label {
     user-select: none;
@@ -60,6 +67,7 @@ input[type=checkbox] {
 }
 
 button {
+    font-family: inherit;
     margin: 12px 0;
     width: 45px;
 }
@@ -78,7 +86,6 @@ button {
 .book-card {
     width: 225px;
     height: 275px;
-    background-color: red;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -95,3 +102,34 @@ button {
 
 }
 
+.remove-btn {
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+	background-color:#fc8d83;
+	border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:12px;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+    width: fit-content;
+}
+.remove-btn:hover {
+	background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+	background-color:#e4685d;
+}
+.remove-btn:active {
+	position:relative;
+	top:1px;
+}
+
+.book-read {
+    background-color: rgb(143, 255, 143);
+}
+
+.book-notread {
+    background-color: rgb(255, 124, 124);
+}

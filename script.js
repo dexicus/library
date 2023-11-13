@@ -46,31 +46,82 @@ function addBookToLibrary() {
 function displayLibrary(myLibrary) {
     deleteLibrary();
     myLibrary.forEach(function (book) {
-        const bookInfo = Object.values(book)
-        createCard(bookInfo)
+        const bookValues = Object.values(book);
+        const bookKeys = Object.keys(book);
+        const index = myLibrary.indexOf(book);
+        createBook(index,bookValues,bookKeys);
     });
 };
 
 
-function createCard(bookInfo) {
+function createBook(index,bookValues,bookKeys) {
     const card = document.createElement('div');
-    document.getElementById('books').appendChild(card);
+    document.getElementById('main').appendChild(card);
     card.classList.add('book-card')
-    for (i=0; i < bookInfo.length; i++) {
-        const info = document.createElement('div');
-        card.append(info);
-        info.classList.add('book-info')
-        info.textContent = bookInfo[i];
+    for (i=0; i < bookValues.length; i++) {
+        if (bookKeys[i] == 'isRead') {
+            if (bookValues[i] === true) {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                card.append(label);
+                label.classList.add('book-info');
+                label.textContent = `read: `;
+                label.append(checkbox);
+                card.classList.add('book-read');
+                checkbox.setAttribute('type', 'checkbox')
+                checkbox.checked = true;
+                checkbox.addEventListener('change', () => {
+                    if (this.checked) {
+                        console.log('test')
+                        card.classList.add('book-read');
+                        card.classList.remove('book-notread');
+                    } else if (this.checked) {
+                        card.classList.remove('book-read');
+                        card.classList.add('book-notread');
+                    }
+                })
+                console.log(myLibrary[index])
+            } else {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                card.append(label);
+                label.classList.add('book-info');
+                label.textContent = `read: `;
+                label.append(checkbox);
+                card.classList.add('book-notread');
+                checkbox.setAttribute('type', 'checkbox')
+                checkbox.checked = false;
+            }
+        } else {
+            const info = document.createElement('div');
+            card.append(info);
+            info.classList.add('book-info');
+            info.textContent = `${bookKeys[i]}: ${bookValues[i]}`;
+        }
+        card.setAttribute('data-attribute', index)
     }
+    const removeBtn = document.createElement('button');
+    card.append(removeBtn);
+    removeBtn.classList.add('remove-btn');
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => {
+        deleteBook(index);
+    })
 };
 
+function deleteBook(index) {
+    if (index > -1) {
+        myLibrary.splice(index, 1);
+    }
+    displayLibrary(myLibrary)
+}
+
 function deleteLibrary() {
-    const books = document.getElementById('books');
+    const books = document.getElementById('main');
     while (books.firstChild) {
         books.removeChild(books.firstChild);
       }
 }
-
 
 displayLibrary(myLibrary);
 
