@@ -50,10 +50,7 @@ h3:hover {
     text-decoration: underline;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
+
 
 label {
     user-select: none;
