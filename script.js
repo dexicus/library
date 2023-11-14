@@ -71,16 +71,8 @@ function createBook(index,bookValues,bookKeys) {
                 checkbox.setAttribute('type', 'checkbox')
                 checkbox.checked = true;
                 checkbox.addEventListener('change', () => {
-                    if (this.checked) {
-                        console.log('test')
-                        card.classList.add('book-read');
-                        card.classList.remove('book-notread');
-                    } else if (this.checked) {
-                        card.classList.remove('book-read');
-                        card.classList.add('book-notread');
-                    }
+                    isRead(card,myLibrary[index])
                 })
-                console.log(myLibrary[index])
             } else {
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
@@ -91,6 +83,9 @@ function createBook(index,bookValues,bookKeys) {
                 card.classList.add('book-notread');
                 checkbox.setAttribute('type', 'checkbox')
                 checkbox.checked = false;
+                checkbox.addEventListener('change', () => {
+                    isRead(card,myLibrary[index])
+                })
             }
         } else {
             const info = document.createElement('div');
@@ -105,11 +100,11 @@ function createBook(index,bookValues,bookKeys) {
     removeBtn.classList.add('remove-btn');
     removeBtn.textContent = 'Remove';
     removeBtn.addEventListener('click', () => {
-        deleteBook(index);
+        deleteBook(card,index);
     })
 };
 
-function deleteBook(index) {
+function deleteBook(card,index) {
     if (index > -1) {
         myLibrary.splice(index, 1);
     }
@@ -121,6 +116,18 @@ function deleteLibrary() {
     while (books.firstChild) {
         books.removeChild(books.firstChild);
       }
+}
+
+function isRead(card,index) {
+    if (index.isRead == true) {
+        index.isRead = false;
+        card.classList.remove('book-read');
+        card.classList.add('book-notread');
+    } else if (index.isRead == false) {
+        index.isRead = true;
+        card.classList.add('book-read');
+        card.classList.remove('book-notread');
+    }
 }
 
 displayLibrary(myLibrary);
